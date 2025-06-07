@@ -31,7 +31,7 @@ function handleSubmit(event) {
         })
       )
       .catch(() =>
-        iziToast.success({
+        iziToast.error({
           message: `❌ Rejected promise in ${delayValue}ms`,
           position: 'topRight',
           messageColor: 'white',

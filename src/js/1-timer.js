@@ -23,7 +23,11 @@ const options = {
     const currentDate = new Date();
 
     if (selectedDate <= currentDate) {
-      window.alert('Please choose a date in the future');
+      iziToast.error({
+        message: 'Please choose a date in the future',
+        position: 'topRight',
+      });
+
       startBtn.disabled = true;
     } else {
       userSelectedDate = selectedDate;
@@ -68,12 +72,14 @@ startBtn.addEventListener('click', () => {
 
     if (timeDiff <= 0) {
       clearInterval(timerId);
-      updateTimer(timeDiff);
+      updateTimer(0);
 
       iziToast.success({
         message: ' Таймер завершено!',
         position: 'topCenter',
       });
+      datePickerInput.disabled = false;
+      startBtn.disabled = true;
       return;
     }
     updateTimer(timeDiff);
@@ -96,6 +102,3 @@ function updateTimer(ms) {
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
-
-
-// перевірити на помилки!!!!!!!!!!!
